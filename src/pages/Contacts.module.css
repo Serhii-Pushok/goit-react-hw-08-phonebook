@@ -4,15 +4,7 @@
     margin-right: auto;
 }
 
-.title {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 1.17;
-    color: var(--primary-text-color);
-}
-
-.text {
-    margin-bottom: 16px;
+.contacts__wrapper {
+    max-width: 600px;
+    margin-top: 60px;
 }

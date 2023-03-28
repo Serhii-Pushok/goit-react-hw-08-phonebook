@@ -4,9 +4,19 @@ import TextField from '@mui/material/TextField';
 import { logIn } from 'redux/auth/operations';
 import { LoadButton } from '../LoadButton/LoadButton';
 import css from './LoginForm.module.css';
+import { useState } from 'react';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+
 
 export const LoginForm = () => {
-
+  
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -20,6 +30,13 @@ export const LoginForm = () => {
     );
     form.reset();
   };
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
 
   return (
     <Box
@@ -43,22 +60,30 @@ export const LoginForm = () => {
           name="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           title="Enter a valid email address. For example, ivanov@gmail.com"
-          required
         />
       </div>
       <div>
-        <TextField
-          id="standard-textarea"
-          label="Password"
-          placeholder="Enter password"
-          multiline
-          variant="standard"
-          type="password"
-          name="password"
-          pattern="^[A-Za-zА-Яа-я0-9,\.\(\)\-]{7,}$"
-          title="Password must contain at least 7 characters"
-          required
-        />
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+              <Input
+                id="standard-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter password"
+                title="Password must contain at least 7 characters"
+                name="password"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+          </FormControl>
       </div>
       <div className={css.button__wrapper}>
         <LoadButton>Log In</LoadButton>

@@ -3,8 +3,3 @@
     align-items: center;
     gap: 12px;
 }
-
-.username {
-    font-weight: 700;
-    color: var(--primary-text-color);
-}
