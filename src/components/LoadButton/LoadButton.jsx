@@ -5,7 +5,8 @@ import { useState } from 'react';
 export const LoadButton = ({children}) => {
 
   const [loading, setLoading] = useState(true);
-  function handleClick() {
+  
+  const handleClick = () => {
     setLoading(true);
   }
 
